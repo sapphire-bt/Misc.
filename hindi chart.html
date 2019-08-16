@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<style>
+			body {
+				background-color: #333;
+				color: lightblue;
+				font-family: Segoe UI, serif;
+			}
+			table {
+				margin: 0 auto;
+				text-align: center;
+			}
+			thead tr {
+				background-color: #222;
+			}
+			tbody td {
+				min-width: 90px;
+			}
+			th, td {
+				padding: 40px;
+			}
+			th {
+				font-size: 50px;
+				font-weight: normal;
+			}
+			span {
+				display: block;
+			}
+			.letter {
+				font-size: 70px;
+				line-height: 2;
+			}
+			.sound {
+				display: block;
+				font-size: 20px;
+				margin-top: 5px;
+			}
+
+			tbody tr td:nth-of-type(1)  { color: #FFFFFF; }
+			tbody tr td:nth-of-type(2)  { color: #DDF7FF; }
+			tbody tr td:nth-of-type(3)  { color: #BBEFFF; }
+			tbody tr td:nth-of-type(4)  { color: #9AE6FF; }
+			tbody tr td:nth-of-type(5)  { color: #78DEFF; }
+			tbody tr td:nth-of-type(6)  { color: #56D6FF; }
+			tbody tr td:nth-of-type(7)  { color: #78DEFF; }
+			tbody tr td:nth-of-type(8)  { color: #9AE6FF; }
+			tbody tr td:nth-of-type(9)  { color: #BBEFFF; }
+			tbody tr td:nth-of-type(10) { color: #DDF7FF; }
+			tbody tr td:nth-of-type(11) { color: #FFFFFF; }
+		</style>
+	</head>
+	<body>
+		<table id="chart">
+			<thead></thead>
+			<tbody></tbody>
+		</table>
+	</body>
+
+	<script>
+		const
+			vowels = {
+				"अ": {d: "", s: "a"},
+				"आ": {d: "ा", s: "ā"},
+				"इ": {d: "ि", s: "i"},
+				"ई": {d: "ी", s: "ī"},
+				"उ": {d: "ु", s: "u"},
+				"ऊ": {d: "ू", s: "ū"},
+				"ए": {d: "े", s: "e"},
+				"ऐ": {d: "ै", s: "ai"},
+				"ओ": {d: "ो", s: "o"},
+				"औ": {d: "ौ", s: "au"},
+				"ऋ": {d: "ृ", s: "ri"},
+			},
+			consonants = {
+				"क": "k",
+				"ख": "kh",
+				"ग": "g",
+				"घ": "gh",
+				"ङ": "ṅ",
+				"ह": "h",
+				"च": "c",
+				"छ": "ch",
+				"ज": "j",
+				"झ": "jh",
+				"ञ": "ñ",
+				"य": "y",
+				"श": "ś",
+				"ट": "ṭ",
+				"ठ": "ṭh",
+				"ड": "ḍ",
+				"ढ": "ḍh",
+				"ण": "ṇ",
+				"र": "r",
+				"ष": "ṣ",
+				"त": "t",
+				"थ": "th",
+				"द": "d",
+				"ध": "dh",
+				"न": "n",
+				"ल": "l",
+				"स": "s",
+				"प": "p",
+				"फ": "ph",
+				"ब": "b",
+				"भ": "bh",
+				"म": "m",
+				"व": "v",
+			},
+			table = document.getElementById("chart"),
+			thead = table.getElementsByTagName("thead")[0],
+			tbody = table.getElementsByTagName("tbody")[0];
+
+		thead.innerHTML = `<tr>${Object.keys(vowels).map(v => `<th>${v}</th>`).join("")}</tr>`;
+
+		for (const c in consonants) {
+			tbody.innerHTML += Object.values(vowels).map(v => `<td><span class="letter">${c + v.d}</span><span class="sound">${consonants[c] + v.s}</span></td>`).join("");
+		}
+	</script>
+</html>
